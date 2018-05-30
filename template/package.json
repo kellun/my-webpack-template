@@ -27,7 +27,8 @@
   "dependencies": {
     "vue": "^2.5.2"{{#router}},
     "vue-router": "^3.0.1",
-    "axios": "^0.18.0"{{/router}}
+    "axios": "^0.18.0"{{/router}}{{#vuex}},
+    "vuex": "^3.0.1"{{/vuex}}
   },
   "devDependencies": {
     {{#lint}}
@@ -83,6 +84,7 @@
     "nightwatch": "^0.9.12",
     "selenium-server": "^3.0.1",
     {{/e2e}}
+    "babel-polyfill": "^6.26.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -106,6 +108,8 @@
     "postcss-url": "^7.2.1",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^6.0.7",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "rimraf": "^2.6.0",

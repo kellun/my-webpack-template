@@ -79,6 +79,11 @@ module.exports = {
       type: 'confirm',
       message: 'Use ESLint to lint your code?',
     },
+    vuex: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install vuex?',
+    },
     lintConfig: {
       when: 'isNotTest && lint',
       type: 'list',
@@ -170,6 +175,7 @@ module.exports = {
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
     'src/router/**/*': 'router',
+    'src/store/**/*':'vuex'
   },
   complete: function(data, { chalk }) {
     const green = chalk.green
