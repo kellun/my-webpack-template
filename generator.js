@@ -69,7 +69,7 @@ module.exports = (api, options, rootOptions) => {
       .filter(path => path.startsWith('src/') || path.startsWith('public/'))
       .forEach(path => delete files[path])
   })
-  api.render('../template');
+  api.render('./template');
   api.onCreateComplete(() => {
     process.env.VUE_CLI_SKIP_WRITE = true;
     // utils.deleteDir('./src/components');
