@@ -37,7 +37,7 @@ module.exports = (api, options, rootOptions) => {
       new: "plop",
     },
   });
-  const dependencies = {
+  let dependencies = {
     "core-js": "^3.6.4",
     vue: "^2.6.11",
     "vue-router": "^3.1.5",
@@ -45,7 +45,7 @@ module.exports = (api, options, rootOptions) => {
     axios: "^0.19.0",
     "normalize.css": "7.0.0",
   };
-  const devDependencies = {
+  let devDependencies = {
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-service": "^3.7.0",
@@ -61,19 +61,19 @@ module.exports = (api, options, rootOptions) => {
     "sass-loader": "^7.1.0",
     semver: "^6.3.0",
     "vue-template-compiler": "^2.5.21",
-    "plop": "2.3.0",
-    "autoprefixer": "^9.5.1"
+    plop: "2.3.0",
+    autoprefixer: "^9.5.1",
   };
   if (options.ui === "vant") {
-    Object.assign(dependencies, {
+    dependencies = Object.assign(dependencies, {
       vant: "^2.1.8",
       "amfe-flexible": "^2.2.1",
     });
-    Object.assign(devDependencies, {
+    devDependencies = Object.assign(devDependencies, {
       "postcss-pxtorem": "^4.0.1",
     });
   } else if (options.ui == "element-ui") {
-    Object.assign(dependencies, {
+    dependencies = Object.assign(dependencies, {
       "element-ui": "^2.13.0",
     });
   }
