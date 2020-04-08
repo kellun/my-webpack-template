@@ -58,7 +58,6 @@ module.exports = {
       .optimization.splitChunks({
         chunks: 'all',
         cacheGroups:{
-          {
             libs: {
               name: 'chunk-libs',
               test: /[\\/]node_modules[\\/]/,
@@ -86,7 +85,6 @@ module.exports = {
               test: /[\\/]node_modules[\\/]_?vant(.*)/ // in order to adapt to cnpm
             }
             <%_ } _%>
-          }
         }
       })
     config.optimization.runtimeChunk('single')
