@@ -1,10 +1,9 @@
 // 拼接路径
 const resolve = dir => require("path").join(__dirname, dir);
-<%_ if (options.ui === 'vant') { _%>
 const autoprefixer = require("autoprefixer");
+<%_ if (options.ui === 'vant') { _%>
 const pxtorem = require("postcss-pxtorem");
 <%_ } _%>
-const TerserPlugin = require("terser-webpack-plugin");
 // 导入compression-webpack-plugin
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 // 定义压缩文件类型
@@ -12,9 +11,10 @@ const productionGzipExtensions = ["js", "css"];
 module.exports = {
   // 项目默认部署在根目录下
   publicPath: "./",
+  outputDir: 'dist',
   assetsDir: "static",
   // 生产环境禁止生成SourceMap
-  productionSourceMap: process.env.NODE_ENV === "production" ? false : true,
+  productionSourceMap:false,
   parallel: require("os").cpus().length > 1,
   devServer: {
     open: process.platform === "darwin",
@@ -37,33 +37,59 @@ module.exports = {
         deleteOriginalAssets: false, //是否删除源文件
       }),
     ];
-    config.optimization = {
-      minimizer: [
-        new TerserPlugin({
-          cache: true, // 开启 cache，加快二次构建速度
-          parallel: true, // 开启多线程压缩打包
-          terserOptions: {
-            output: {
-              comments: false, // 打包时删除注释
-            },
-            compress: {
-              drop_console: true, // 生产环境禁止打印console.log()
-              dead_code: true, // 删除无法访问的代码
-              drop_debugger: true, // 删除debugger
-            },
-          },
-        }),
-      ],
-    };
   },
   chainWebpack: (config) => {
     config.plugins.delete("prefetch");
     config.resolve.alias
       .set("@", resolve("src"))
       .set("assets", resolve("src/assets/"))
+      .set("img", resolve("src/assets/images"))
+      .set("scss", resolve("src/assets/scss"))
       .set("components", resolve("src/components/"))
       .set("api", resolve("src/api/"))
-      .set("utils", resolve("src/utils/"));
+      .set("utils", resolve("src/utils/"))
+      .set("views", resolve("src/views/"));
+    config
+      // https://webpack.js.org/configuration/devtool/#development
+      .when(process.env.NODE_ENV === 'development',
+        config => config.devtool('cheap-source-map')
+    )
+    config
+      .optimization.splitChunks({
+        chunks: 'all',
+        cacheGroups:{
+          {
+            libs: {
+              name: 'chunk-libs',
+              test: /[\\/]node_modules[\\/]/,
+              priority: 10,
+              chunks: 'initial' // only package third parties that are initially dependent
+            },
+            commons: {
+              name: 'chunk-commons',
+              test: resolve('src/components'), // can customize your rules
+              minChunks: 3, //  minimum common number
+              priority: 5,
+              reuseExistingChunk: true
+            },
+            <%_ if (options.ui === 'element-ui') { _%>
+            elementUI: {
+              name: 'chunk-elementUI', // split elementUI into a single package
+              priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+              test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
+            }
+            <%_ } _%>
+            <%_ if (options.ui === 'vant') { _%>
+            vant:{
+              name: 'chunk-vant', // split elementUI into a single package
+              priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+              test: /[\\/]node_modules[\\/]_?vant(.*)/ // in order to adapt to cnpm
+            }
+            <%_ } _%>
+          }
+        }
+      })
+    config.optimization.runtimeChunk('single')
   },
   <%_ if (options.ui === 'vant') { _%>
   css: {

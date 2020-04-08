@@ -29,10 +29,12 @@ module.exports = (api, options, rootOptions) => {
   const utils = tool(api);
   // 命令
   api.extendPackage({
+    author: "Wzp <1193278447@qq.com>",
     scripts: {
       serve: "vue-cli-service serve",
       build: "vue-cli-service build",
       lint: "vue-cli-service lint",
+      new: "plop",
     },
   });
   const dependencies = {
@@ -52,13 +54,15 @@ module.exports = (api, options, rootOptions) => {
     "babel-plugin-import": "^1.12.1",
     "babel-polyfill": "^6.26.0",
     "compression-webpack-plugin": "^3.1.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    eslint: "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
     "html-search": "^0.0.5",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
-    "semver": "^6.3.0",
-    "vue-template-compiler": "^2.5.21"
+    semver: "^6.3.0",
+    "vue-template-compiler": "^2.5.21",
+    "plop": "2.3.0",
+    "autoprefixer": "^9.5.1"
   };
   if (options.ui === "vant") {
     Object.assign(dependencies, {
