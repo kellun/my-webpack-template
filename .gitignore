@@ -1,0 +1,4 @@
+*.agdai
+*.ps1
+template/node_modules/*
+GeneratorAPI.js

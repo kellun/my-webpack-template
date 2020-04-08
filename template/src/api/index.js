@@ -1,10 +1,12 @@
-import request from './request'
-import qs from 'qs'
+// import request from "./request";
 
-// export function fun (data) {
-//     return request({
-//       url: '',
-//       method: '',
-//       data:
-//     })
-//   }
+/**
+ * 分页查询课程列表
+ */
+// export function course(cellphone, params) {
+//   return request({
+//     url: `/teacher/course/${cellphone}`,
+//     method: "get",
+//     params
+//   });
+// }
