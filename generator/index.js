@@ -27,16 +27,6 @@ const tool = (api) => {
 };
 module.exports = (api, options, rootOptions) => {
   const utils = tool(api);
-  // 命令
-  api.extendPackage({
-    author: "Wzp <1193278447@qq.com>",
-    scripts: {
-      serve: "vue-cli-service serve",
-      build: "vue-cli-service build",
-      lint: "vue-cli-service lint",
-      new: "plop",
-    },
-  });
   let dependencies = {
     "core-js": "^3.6.4",
     vue: "^2.6.11",
@@ -79,8 +69,15 @@ module.exports = (api, options, rootOptions) => {
   }
   // 安装一些基础公共库
   api.extendPackage({
+    author: "Wzp <1193278447@qq.com>",
+    scripts: {
+      serve: "vue-cli-service serve",
+      build: "vue-cli-service build",
+      lint: "vue-cli-service lint",
+      new: "plop",
+    },
     dependencies,
-    devDependencies,
+    devDependencies
   });
   // 删除 vue-cli3 默认目录
   api.render((files) => {
