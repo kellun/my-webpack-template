@@ -1,6 +1,5 @@
 import axios from 'axios';
 import qs from 'qs';
-import { Notification } from 'element-ui';
 
 const BASE_URL = process.env.VUE_APP_BASE_API;
 const REQUEST_TIMEOUT = 10 * 6000;
@@ -35,19 +34,6 @@ service.interceptors.response.use(
   },
   err => {
     console.error('response error:', err) // 处理请求错误
-    if(err.response&&err.response){
-      Notification({
-        title:'提示',
-        type:'error',
-        message:err.response.data.message
-      });
-    }else{
-      alert(err.toString());
-    }
-    if (err.response.status == 401) {
-      alert('请登录');
-      window.location.href = './index.html';
-    }
     return Promise.reject(err)
   }
 );
