@@ -55,7 +55,6 @@ module.exports = {
         }),
       ],
     };
-    return config;
   },
   chainWebpack: (config) => {
     config.plugins.delete("prefetch");

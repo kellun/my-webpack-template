@@ -44,31 +44,28 @@ module.exports = (api, options, rootOptions) => {
     "normalize.css": "7.0.0",
   };
   const devDependencies = {
-    "@vue/cli-plugin-babel": "~4.2.0",
-    "@vue/cli-plugin-eslint": "~4.2.0",
-    "@vue/cli-plugin-router": "~4.2.0",
-    "@vue/cli-plugin-vuex": "~4.2.0",
-    "@vue/cli-service": "~4.2.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "compression-webpack-plugin": "^3.1.0",
-    "babel-eslint": "^10.0.3",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
+    "babel-plugin-import": "^1.12.1",
     "babel-polyfill": "^6.26.0",
-    "terser-webpack-plugin": "^2.3.5",
-    eslint: "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^6.1.2",
-    "lint-staged": "^9.5.0",
-    prettier: "^1.19.1",
-    "vue-template-compiler": "^2.6.11",
+    "compression-webpack-plugin": "^3.1.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "html-search": "^0.0.5",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
+    "semver": "^6.3.0",
+    "vue-template-compiler": "^2.5.21"
   };
   if (options.ui === "vant") {
     Object.assign(dependencies, {
       vant: "^2.1.8",
       "amfe-flexible": "^2.2.1",
     });
-    Object.assign(dependencies, {
+    Object.assign(devDependencies, {
       "postcss-pxtorem": "^4.0.1",
     });
   } else if (options.ui == "element-ui") {

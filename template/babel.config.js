@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['@vue/cli-plugin-babel/preset'],
+  presets: ['@vue/app'],
   <%_ if (options.ui === 'vant') { _%>
   plugins: [
     [
