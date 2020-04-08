@@ -11,5 +11,5 @@
       "lintOn": ["save", "commit"]
     }
   },
-  "cssPreprocessor": "less"
+  "cssPreprocessor": "sass"
 }
